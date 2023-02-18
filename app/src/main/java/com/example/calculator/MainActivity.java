@@ -2,6 +2,7 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,20 +10,36 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9;
-    Button bang,cong,tru,nhan,chia,c,ce,btdot;
+    Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btn_history;
+    Button bang,cong,tru,nhan,chia,ac,c,btdot;
     TextView mainscreen, secondscreen;
     String tinhtoan;
     String pheptoan;
     boolean checkDot=false,checkBang=false;
     double so1,so2,ketqua;
-
+    public void openHistory() {
+        Intent intent = new Intent(this, MainActivity2.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btn_history=(Button) findViewById(R.id.btn_history);
+        btn_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHistory();
+
+            }
+
+        });
+
+
+
         anhxa();
-        c.setOnClickListener(new View.OnClickListener() {
+        ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 secondscreen.setText("");
@@ -247,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ce.setOnClickListener(new View.OnClickListener() {
+        c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!checkBang) {
@@ -280,8 +297,8 @@ public class MainActivity extends AppCompatActivity {
         tru = findViewById(R.id.tru);
         nhan = findViewById(R.id.nhan);
         chia = findViewById(R.id.chia);
+        ac = findViewById(R.id.ac);
         c = findViewById(R.id.c);
-        ce = findViewById(R.id.ce);
         mainscreen = findViewById(R.id.man_hinh);
         secondscreen = findViewById(R.id.man_hinh_phu);
     }
